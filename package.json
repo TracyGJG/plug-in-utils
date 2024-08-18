@@ -1,0 +1,16 @@
+{
+  "name": "v3-plug-ins",
+  "version": "1.0.0",
+  "description": "V3 plug-in utilities",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-vm-modules index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
