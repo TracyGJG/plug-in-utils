@@ -9,45 +9,45 @@ import {
 describe('utils', () => {
   describe('consoliateObjectsById', () => {
     test('', () => {
-      const testDataOne = [
-        { id: 'alpha', label: 'test 1' },
-        { id: 'beta', label: 'test 2' },
-        { id: 'gamma', label: 'test 3' },
-        { id: 'delta', label: 'test 4' },
+      const testData = [
+        [
+          { id: 'alpha', label: 'test 1', data: {} },
+          { id: 'beta', label: 'test 2', data: {} },
+          { id: 'gamma', label: 'test 3', data: { location: 'x' } },
+          { id: 'delta', label: 'test 4', data: {} },
+        ],
+        [
+          { id: 'alpha', data: {} },
+          { id: 'beta', title: 'test 2', data: {} },
+          { id: 'gamma', label: 'test 3', data: { area: 'y' } },
+        ],
+        [],
       ];
-      const testDataTwo = [
-        { id: 'alpha' },
-        { id: 'beta', title: 'test 2' },
-        { id: 'gamma', label: 'test 3' },
-      ];
-      const testDataThree = [];
       const testIds = ['alpha', 'beta', 'gamma', 'delta'];
 
-      const result = consoliateObjectsById(
-        'id',
-        testIds,
-        testDataOne,
-        testDataTwo,
-        testDataThree
-      );
+      const result = consoliateObjectsById('id', testIds, ...testData);
       expect(result.length).toBe(4);
       expect(result).toEqual([
         {
           id: 'alpha',
           label: 'test 1',
+          data: {},
         },
         {
           id: 'beta',
           label: 'test 2',
           title: 'test 2',
+          data: {},
         },
         {
           id: 'gamma',
           label: 'test 3',
+          data: { area: 'y', location: 'x' },
         },
         {
           id: 'delta',
           label: 'test 4',
+          data: {},
         },
       ]);
     });

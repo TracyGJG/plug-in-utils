@@ -20,7 +20,11 @@ export function consoliateObjectsById(idProp, objIds, ...srcArrays) {
   return objIds.map(id =>
     consolidatedObjects
       .filter(obj => obj[idProp] === id)
-      .reduce((_, __) => ({ ..._, ...__ }), {})
+      .reduce((_, __) => {
+        const hold = { ..._, ...__ };
+        hold.data = { ..._.data, ...__.data };
+        return hold;
+      }, {})
   );
 }
 
